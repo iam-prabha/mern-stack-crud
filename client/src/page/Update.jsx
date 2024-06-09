@@ -25,7 +25,7 @@ const Update = () => {
   useEffect(() => {
     const fetchTodo = async () => {
       try {
-        const response = await axios.get("https://mern-stack-crud-api.vercel.app/"+id);
+        const response = await axios.get("https://mern-stack-crud-api.vercel.app/getall");
         console.log(response.data);
       } catch (error) {
         console.log(error);
