@@ -28,7 +28,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 //production build
 app.use(express.static(path.join(__dirname, "build")));
-
+app.get("/" ,(req,res) => {
+  res.send("Api running")
+})
 app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });
