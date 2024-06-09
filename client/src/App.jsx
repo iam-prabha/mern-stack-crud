@@ -77,7 +77,7 @@ const App = () => {
       </div>
 
       {/* card */}
-      {!todos.length == 0 ? (
+      {!todos.length == 0 && isLoading === false? (
         todos.map((todo) => {
           return (
             <div
