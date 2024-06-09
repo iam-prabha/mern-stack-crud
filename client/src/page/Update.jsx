@@ -5,15 +5,18 @@ const Update = () => {
   const navigate = useNavigate();
   const [newTodo, setNewTodo] = useState("");
   const { id } = useParams();
+  const [isLoading,setLoading] = useState(false)
 
 
   //update
   const handleUpdate = () => {
+    setLoading(true)
     axios
       .put(`https://mern-stack-crud-api.vercel.app/update/${id}`, { newTodo })
       .then((result) => {
         console.log(result.data);
         setNewTodo(result.data);
+        setLoading(false)
       })
       .catch((err) => {
         console.error(err);
