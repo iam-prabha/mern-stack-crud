@@ -11,7 +11,7 @@ const App = () => {
     const fetchTodo = async () => {
       setLoading(true);
       try {
-        const response = await axios.get("http://localhost:3000/getall");
+        const response = await axios.get("https://mern-stack-crud-api.vercel.app/getall");
         setTodos(response.data);
         console.log(response.data);
       } catch (error) {
@@ -24,7 +24,7 @@ const App = () => {
   //handlesubmit for
   const handleSubmit = async () => {
     await axios
-      .post("http://localhost:3000/add", { todo })
+      .post("https://mern-stack-crud-api.vercel.app/add", { todo })
       .then((result) => {
         setTodos([...todos, result.data]);
       })
@@ -37,7 +37,7 @@ const App = () => {
   //delete task
   const handleDelete = async (id) => {
     await axios
-      .delete(`http://localhost:3000/delete/${id}`)
+      .delete(`hhttps://mern-stack-crud-api.vercel.app/delete/${id}`)
       .then((response) => {
         setTodos(todos.filter((todo) => todo._id !== id));
         setLoading(true);

@@ -14,7 +14,13 @@ app.use(express.json());
 
 // *cors configuration
 
-app.use(cors());
+app.use(cors(
+  {
+    origin: ["https://mern-stack-crud-client.vercel.app/","localhost:3000"],
+    methods: ["POST", "GET","PUT","DELETE"],
+    credentials: true
+}
+));
 //allow to encoded req.body data
 app.use(express.urlencoded({ extended: true }));
 // Get the current directory
