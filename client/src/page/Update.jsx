@@ -5,24 +5,34 @@ const Update = () => {
   const navigate = useNavigate();
   const [newTodo, setNewTodo] = useState("");
   const { id } = useParams();
-  const [isLoading,setLoading] = useState(false)
 
 
   //update
   const handleUpdate = () => {
-    setLoading(true)
     axios
       .put(`https://mern-stack-crud-api.vercel.app/update/${id}`, { newTodo })
       .then((result) => {
         console.log(result.data);
         setNewTodo(result.data);
-        setLoading(false)
       })
       .catch((err) => {
         console.error(err);
       });
     navigate("/");
   };
+
+  // fetch again with id to see updated todo
+  useEffect(() => {
+    const fetchTodo = async () => {
+      try {
+        const response = await axios.get("https://mern-stack-crud-api.vercel.app/getall");
+        console.log(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchTodo();
+  }, []);
 
   return (
     <div className="h-screen w-screen pt-2 bg-orange-400">
