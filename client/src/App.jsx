@@ -37,7 +37,7 @@ const App = () => {
   //delete task
   const handleDelete = async (id) => {
     await axios
-      .delete(`hhttps://mern-stack-crud-api.vercel.app/delete/${id}`)
+      .delete(`https://mern-stack-crud-api.vercel.app/delete/${id}`)
       .then((response) => {
         setTodos(todos.filter((todo) => todo._id !== id));
         setLoading(true);

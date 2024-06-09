@@ -16,8 +16,8 @@ app.use(express.json());
 
 app.use(cors(
   {
-    origin: ["https://mern-stack-crud-client.vercel.app","localhost:3000"],
-    methods: ["POST", "GET","PUT","DELETE"],
+    origin: ["https://mern-stack-crud-client.vercel.app/"],
+    methods: ["POST", "GET"],
     credentials: true
 }
 ));
