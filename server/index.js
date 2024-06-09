@@ -5,7 +5,6 @@ import TodoRoute from "./routes/TodoRoute.js";
 import path from "path";
 import { fileURLToPath } from "url";
 import cors from "cors";
-import { Console } from "console";
 config({
   path: "./.env",
 });
@@ -15,11 +14,7 @@ app.use(express.json());
 
 // *cors configuration
 
-app.use(cors({
-  origin: ['https://mern-stack-crud-api.vercel.app/'],
-  credentials:true,
-  methods: ['GET','POST','PUT','DELETE'],
-}));
+app.use(cors());
 //allow to encoded req.body data
 app.use(express.urlencoded({ extended: true }));
 // Get the current directory

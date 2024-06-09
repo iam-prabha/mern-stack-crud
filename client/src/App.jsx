@@ -6,26 +6,25 @@ const App = () => {
   const [todo, setTodo] = useState("");
   const [todos, setTodos] = useState([]);
   const [isLoading, setLoading] = useState(false);
-  axios.defaults.withCredentials =true;
   // get data (fetch)
   useEffect(() => {
     const fetchTodo = async () => {
       setLoading(true);
       try {
-        const response = await axios.get("https://mern-stack-crud-api.vercel.app/getall");
+        const response = await axios.get("http://localhost:3000/getall");
         setTodos(response.data);
         console.log(response.data);
       } catch (error) {
         console.log(error);
-        setLoading(false);
       }
+      setLoading(false);
     };
     fetchTodo();
   }, []);
   //handlesubmit for
   const handleSubmit = async () => {
     await axios
-      .post("https://mern-stack-crud-api.vercel.app/add", { todo })
+      .post("http://localhost:3000/add", { todo })
       .then((result) => {
         setTodos([...todos, result.data]);
       })
@@ -37,11 +36,10 @@ const App = () => {
 
   //delete task
   const handleDelete = async (id) => {
-    //e.preventDefault();
     await axios
-    .delete(`https://mern-stack-crud-api.vercel.app/delete/${id}`)
-    .then((response) => {
-        setTodos( todos.filter((todo) => todo._id !== id));
+      .delete(`http://localhost:3000/delete/${id}`)
+      .then((response) => {
+        setTodos(todos.filter((todo) => todo._id !== id));
         setLoading(true);
         console.log(response);
       })
@@ -79,9 +77,7 @@ const App = () => {
       </div>
 
       {/* card */}
-      {todos.length === 0 && isLoading ? (
-        <div className="text-center">No task available</div>
-      ) : (
+      {!todos.length == 0 ? (
         todos.map((todo) => {
           return (
             <div
@@ -95,14 +91,17 @@ const App = () => {
                     <PenLine />
                   </button>
                 </Link>
-                <button onClick={(e) => handleDelete(todo._id)}>
+                <button onClick={() => handleDelete(todo._id)}>
                   <Trash2 />
                 </button>
               </div>
             </div>
           );
         })
+      ) : (
+        <div className="text-center">No task available</div>
       )}
+      {/* end */}
     </div>
   );
 };
