@@ -10,7 +10,7 @@ const Update = () => {
   //update
   const handleUpdate = () => {
     axios
-      .put(`https://mern-stack-crud-api.vercel.app/update/${id}`, { newTodo })
+      .put(`https://mern-stack-crud-api.vercel.app/updated/${id}`, { newTodo })
       .then((result) => {
         console.log(result.data);
         setNewTodo(result.data);

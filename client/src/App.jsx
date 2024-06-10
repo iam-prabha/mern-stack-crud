@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Trash2, PenLine } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 const App = () => {
   const [todo, setTodo] = useState("");
@@ -10,7 +10,9 @@ const App = () => {
   useEffect(() => {
     const fetchTodo = async () => {
       try {
-        const response = await axios.get("https://mern-stack-crud-api.vercel.app/getall");
+        const response = await axios.get(
+          "https://mern-stack-crud-api.vercel.app/getall"
+        );
         setTodos(response.data);
         setLoading(true);
         console.log(response.data);
@@ -21,6 +23,17 @@ const App = () => {
     };
     fetchTodo();
   }, []);
+
+  //get task to update
+  const getTaskById = async (id) => {
+    try {
+      await axios.get(`https://mern-stack-crud-api.vercel.app/update/${id}`);
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   //handlesubmit for
   const handleSubmit = async () => {
     await axios
@@ -77,7 +90,7 @@ const App = () => {
       </div>
 
       {/* card */}
-      {!todos.length == 0 && isLoading === false? (
+      {!todos.length == 0 && isLoading === false ? (
         todos.map((todo) => {
           return (
             <div
@@ -87,7 +100,7 @@ const App = () => {
               <p className="text-xl w-full">{todo.todo}</p>
               <div className="flex gap-x-2">
                 <Link to={`/update/${todo._id}`}>
-                  <button>
+                  <button onClick={()=>getTaskById(todo._id)}>
                     <PenLine />
                   </button>
                 </Link>

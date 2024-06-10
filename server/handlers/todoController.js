@@ -31,6 +31,20 @@ const getInput = async (req, res, next) => {
   console.log(result);
   next();
 };
+
+// @route   localhost:3000/get/:id
+// @desc     get task by id to update
+// @access   public
+const getInputById = async (req, res, next) => {
+  const { id } = req.params;
+
+  const result = await todos.findById({
+    _id: id,
+  });
+  res.status(200).json(result);
+  next();
+};
+
 // @route   localhost:3000/update/:id
 // @desc     update task
 // @access   public
@@ -61,4 +75,4 @@ const deleteByIdInput = async (req, res, next) => {
   next();
 };
 
-export { addInput, getInput, updateInput, deleteByIdInput };
+export { addInput, getInput, getInputById, updateInput, deleteByIdInput };
