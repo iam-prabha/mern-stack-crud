@@ -21,18 +21,6 @@ const Update = () => {
     navigate("/");
   };
 
-  // fetch again with id to see updated todo
-  useEffect(() => {
-    const fetchTodo = async () => {
-      try {
-        const response = await axios.get("https://mern-stack-crud-api.vercel.app/getall");
-        console.log(response.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchTodo();
-  }, []);
 
   return (
     <div className="h-screen w-screen pt-2 bg-orange-400">

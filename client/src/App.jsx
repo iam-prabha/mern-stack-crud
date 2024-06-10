@@ -9,10 +9,10 @@ const App = () => {
   // get data (fetch)
   useEffect(() => {
     const fetchTodo = async () => {
-      setLoading(true);
       try {
         const response = await axios.get("https://mern-stack-crud-api.vercel.app/getall");
         setTodos(response.data);
+        setLoading(true);
         console.log(response.data);
       } catch (error) {
         console.log(error);
