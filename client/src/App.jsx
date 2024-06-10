@@ -28,8 +28,12 @@ const App = () => {
   const getTaskById = async (id) => {
     await axios
       .get(`https://mern-stack-crud-api.vercel.app/update/${id}`)
-      .then((response) => console.log(response.data))
+      .then((response) => {
+        console.log(response.data);
+        setLoading(true);
+      })
       .catch((err) => console.log(err.message));
+    setLoading(false);
   };
 
   //handlesubmit for
