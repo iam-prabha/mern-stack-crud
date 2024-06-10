@@ -26,12 +26,10 @@ const App = () => {
 
   //get task to update
   const getTaskById = async (id) => {
-    try {
-      await axios.get(`https://mern-stack-crud-api.vercel.app/update/${id}`);
-      console.log(response.data);
-    } catch (error) {
-      console.log(error);
-    }
+    await axios
+      .get(`https://mern-stack-crud-api.vercel.app/update/${id}`)
+      .then((response) => console.log(response.data))
+      .catch((err) => console.log(err.message));
   };
 
   //handlesubmit for
@@ -100,7 +98,7 @@ const App = () => {
               <p className="text-xl w-full">{todo.todo}</p>
               <div className="flex gap-x-2">
                 <Link to={`/update/${todo._id}`}>
-                  <button onClick={()=>getTaskById(todo._id)}>
+                  <button onClick={() => getTaskById(todo._id)}>
                     <PenLine />
                   </button>
                 </Link>
