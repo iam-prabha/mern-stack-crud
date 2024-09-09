@@ -4,16 +4,19 @@ import { useNavigate, useParams } from "react-router-dom";
 const Update = () => {
   const navigate = useNavigate();
   const [newTodo, setNewTodo] = useState("");
+  const [isLoading, setLoading] = useState(false);
   const { id } = useParams();
 
 
   //update
   const handleUpdate = () => {
+    setLoading(true);
     axios
       .put(`https://mern-stack-crud-api.vercel.app/updated/${id}`, { newTodo })
       .then((result) => {
         console.log(result.data);
         setNewTodo(result.data);
+        setLoading(false);
       })
       .catch((err) => {
         console.error(err);
