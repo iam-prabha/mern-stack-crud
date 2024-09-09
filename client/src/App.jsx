@@ -9,31 +9,31 @@ const App = () => {
   // get data (fetch)
   useEffect(() => {
     const fetchTodo = async () => {
+      setLoading(true);
       try {
         const response = await axios.get(
           "https://mern-stack-crud-api.vercel.app/getall"
         );
         setTodos(response.data);
-        setLoading(true);
+        setLoading(false);
         console.log(response.data);
       } catch (error) {
         console.log(error);
       }
-      setLoading(false);
     };
     fetchTodo();
   }, []);
 
   //get task to update
   const getTaskById = async (id) => {
+    setLoading(true);
     await axios
       .get(`https://mern-stack-crud-api.vercel.app/update/${id}`)
       .then((response) => {
+      setLoading(false);
         console.log(response.data);
-        setLoading(true);
       })
       .catch((err) => console.log(err.message));
-    setLoading(false);
   };
 
   //handlesubmit for
@@ -51,17 +51,17 @@ const App = () => {
 
   //delete task
   const handleDelete = async (id) => {
+    setLoading(true);
     await axios
       .delete(`https://mern-stack-crud-api.vercel.app/delete/${id}`)
       .then((response) => {
         setTodos(todos.filter((todo) => todo._id !== id));
-        setLoading(true);
+        setLoading(false);
         console.log(response);
       })
       .catch((err) => {
         console.error(err);
       });
-    setLoading(false);
   };
 
   return (
