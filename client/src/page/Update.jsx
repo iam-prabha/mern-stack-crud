@@ -10,18 +10,18 @@ const Update = () => {
 
   //update
   const handleUpdate = () => {
-    setLoading(true);
     axios
       .put(`https://mern-stack-crud-api.vercel.app/updated/${id}`, { newTodo })
       .then((result) => {
         console.log(result.data);
         setNewTodo(result.data);
-        setLoading(false);
       })
       .catch((err) => {
         console.error(err);
       });
     navigate("/");
+    setLoading(true);
+    setLoading(false);
   };
 
 

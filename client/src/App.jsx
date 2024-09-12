@@ -51,12 +51,10 @@ const App = () => {
 
   //delete task
   const handleDelete = async (id) => {
-    setLoading(true);
     await axios
       .delete(`https://mern-stack-crud-api.vercel.app/delete/${id}`)
       .then((response) => {
         setTodos(todos.filter((todo) => todo._id !== id));
-        setLoading(false);
         console.log(response);
       })
       .catch((err) => {
@@ -100,7 +98,7 @@ const App = () => {
               className="bg-white flex justify-between items-center shadow max-w-xs m-auto p-2 mt-2 rounded"
             >
               <p className="text-xl w-full">{todo.todo}</p>
-              <div className="flex gap-x-2">
+              <div className="flex items-center gap-x-2">
                 <Link to={`/update/${todo._id}`}>
                   <button onClick={() => getTaskById(todo._id)}>
                     <PenLine />
