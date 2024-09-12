@@ -20,8 +20,6 @@ const Update = () => {
         console.error(err);
       });
     navigate("/");
-    setLoading(true);
-    setLoading(false);
   };
 
 
