@@ -22,7 +22,7 @@ const App = () => {
       }
     };
     fetchTodo();
-  }, []);
+  }, [todos]);
 
   //get task to update
   const getTaskById = async (id) => {
